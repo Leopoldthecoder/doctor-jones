@@ -6,7 +6,8 @@
   "browser": "dist/index.umd.js",
   "scripts": {
     "dev": "cross-env NODE_ENV=dev rollup --watch -c",
-    "build": "rimraf dist && cross-env NODE_ENV=prod rollup -c"
+    "build": "rimraf dist && cross-env NODE_ENV=prod rollup -c",
+    "test": "npm run build && ava -v"
   },
   "repository": {
     "type": "git",
@@ -22,6 +23,7 @@
     "pangu": "^3.3.0"
   },
   "devDependencies": {
+    "ava": "^1.0.1",
     "cross-env": "^5.2.0",
     "eslint-config-doran": "^1.0.7",
     "prettier": "^1.15.3",

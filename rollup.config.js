@@ -6,9 +6,8 @@ import { uglify } from 'rollup-plugin-uglify'
 
 const isProd = process.env.NODE_ENV === 'prod'
 const getConfig = (format, min = false) => {
-  return {
-    input: 'index.js',
-    output: isProd
+  const output = Object.assign(
+    isProd
       ? {
           file: `dist/index.${format}.${min ? 'min.' : ''}js`,
           format
@@ -17,6 +16,11 @@ const getConfig = (format, min = false) => {
           file: 'build/index.js',
           format: 'cjs'
         },
+    format === 'umd' ? { name: 'dj' } : {}
+  )
+  return {
+    input: 'src/index.js',
+    output,
     plugins: [
       eslint(),
       buble(),
