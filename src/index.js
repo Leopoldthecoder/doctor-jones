@@ -2,18 +2,26 @@ import pangu from 'pangu/dist/shared/core'
 import { merge } from './utils'
 import defaultOptions from './default-options'
 
+const dotsSpaceCjk = /(\.{3,})\s([\u2e80-\u2eff\u2f00-\u2fdf\u3040-\u309f\u30a0-\u30ff\u3100-\u312f\u3200-\u32ff\u3400-\u4dbf\u4e00-\u9fff\uf900-\ufaff])/g
+
 const dj = (input, userOptions) => {
   const options = merge(defaultOptions, userOptions)
-  const { spacing, successiveExclamationMarks } = options
+  const { spacing, successiveExclamationMarks, ellipsisTolerance } = options
 
   let output = input
 
   if (spacing) {
-    output = pangu.spacing(output)
+    output = pangu.spacing(output).replace(dotsSpaceCjk, '$1$2')
   }
 
   if (!successiveExclamationMarks) {
     output = output.replace(/！{2,}/g, '！')
+  }
+
+  if (ellipsisTolerance !== 'all') {
+    const invalidEllipsis =
+      ellipsisTolerance === 'none' ? /[。，、.]{2,}/g : /[。，、]{2,}/g
+    output = output.replace(invalidEllipsis, '……')
   }
 
   return output

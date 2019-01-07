@@ -1,4 +1,5 @@
 export default {
   spacing: true,
-  successiveExclamationMarks: false
+  successiveExclamationMarks: false,
+  ellipsisTolerance: 'none'
 }
