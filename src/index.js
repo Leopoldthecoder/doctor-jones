@@ -6,7 +6,12 @@ const dotsSpaceCjk = /(\.{3,})\s([\u2e80-\u2eff\u2f00-\u2fdf\u3040-\u309f\u30a0-
 
 const dj = (input, userOptions) => {
   const options = merge(defaultOptions, userOptions)
-  const { spacing, successiveExclamationMarks, ellipsisTolerance } = options
+  const {
+    spacing,
+    successiveExclamationMarks,
+    ellipsisTolerance,
+    replaceWithCornerQuotes
+  } = options
 
   let output = input
 
@@ -18,13 +23,28 @@ const dj = (input, userOptions) => {
     output = output.replace(/！{2,}/g, '！')
   }
 
-  if (ellipsisTolerance !== 'all') {
+  if (ellipsisTolerance === 'none' || ellipsisTolerance === '...') {
     const invalidEllipsis =
       ellipsisTolerance === 'none' ? /[。，、.]{2,}/g : /[。，、]{2,}/g
     output = output.replace(invalidEllipsis, '……')
   }
 
+  if (
+    replaceWithCornerQuotes === 'double' ||
+    replaceWithCornerQuotes === 'single'
+  ) {
+    output = output
+      .replace(
+        replaceWithCornerQuotes === 'double' ? /(“)(.*)(”)/g : /(‘)(.*)(’)/g,
+        '「$2」'
+      )
+      .replace(
+        replaceWithCornerQuotes === 'double' ? /(‘)(.*)(’)/g : /(“)(.*)(”)/g,
+        '『$2』'
+      )
+  }
+
   return output
 }
-
+console.log(dj('5kg'))
 export default dj

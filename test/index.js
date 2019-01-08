@@ -4,7 +4,8 @@ import dj from '../src'
 const dumbOptions = {
   spacing: false,
   successiveExclamationMarks: true,
-  ellipsisTolerance: 'all'
+  ellipsisTolerance: 'all',
+  replaceWithCornerQuotes: 'none'
 }
 
 const getOptions = option => Object.assign(dumbOptions, option)
@@ -39,4 +40,18 @@ test('normalize ellipsis', t => {
   )
   t.is(noneToleranceOutput, '怎么……咬……不……断……')
   t.is(dotsToleratedOutput, '怎么……咬……不...断……')
+})
+
+test('replace quotation marks', t => {
+  const input = '他说：“什么是‘两开花’？”'
+  const doubleQuoteOutput = dj(
+    input,
+    getOptions({ replaceWithCornerQuotes: 'double' })
+  )
+  const singleQuoteOutput = dj(
+    input,
+    getOptions({ replaceWithCornerQuotes: 'single' })
+  )
+  t.is(doubleQuoteOutput, '他说：「什么是『两开花』？」')
+  t.is(singleQuoteOutput, '他说：『什么是「两开花」？』')
 })
