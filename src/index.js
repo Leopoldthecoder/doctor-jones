@@ -10,7 +10,8 @@ const dj = (input, userOptions) => {
     spacing,
     successiveExclamationMarks,
     ellipsisTolerance,
-    replaceWithCornerQuotes
+    replaceWithCornerQuotes,
+    halfwidthParenthesisAroundNumbers
   } = options
 
   let output = input
@@ -44,7 +45,11 @@ const dj = (input, userOptions) => {
       )
   }
 
+  if (halfwidthParenthesisAroundNumbers) {
+    output = output.replace(/([^\s])\s*(（)(\s*[0-9.]+\s*)(）)/g, '$1 ($3)')
+  }
+
   return output
 }
-console.log(dj('5kg'))
+
 export default dj

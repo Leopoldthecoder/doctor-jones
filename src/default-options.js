@@ -9,5 +9,8 @@ export default {
   ellipsisTolerance: 'none',
 
   // string: 'double' | 'single' | 'none'，使用直角引号替换的弯引号
-  replaceWithCornerQuotes: 'double'
+  replaceWithCornerQuotes: 'double',
+
+  // boolean, 数字周围使用半角括号
+  halfwidthParenthesisAroundNumbers: true
 }

@@ -55,3 +55,12 @@ test('replace quotation marks', t => {
   t.is(doubleQuoteOutput, '他说：「什么是『两开花』？」')
   t.is(singleQuoteOutput, '他说：『什么是「两开花」？』')
 })
+
+test('halfwidth parenthesis around numbers', t => {
+  const input = '今年（2019）'
+  const output = dj(
+    input,
+    getOptions({ halfwidthParenthesisAroundNumbers: true })
+  )
+  t.is(output, '今年 (2019)')
+})
