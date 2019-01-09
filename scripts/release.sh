@@ -21,14 +21,14 @@ if [[ $REPLY =~ ^[Yy]$ ]]; then
   npm --no-git-tag-version version $VERSION --message "[release] $VERSION"
 
   # changelog
-  npx conventional-changelog -p angular -i CHANGELOG.md -s -r 0
+  npx conventional-changelog -p angular -i CHANGELOG.md -s
 
   git add .
   git commit -m "chore: update changelog for $VERSION"
 
   # publish
-  git tag v$VERSION
-  git push origin refs/tags/v$VERSION
-  git push
+  git tag $VERSION
+  git push origin refs/tags/$VERSION
+  git push origin master
   npm publish
 fi
