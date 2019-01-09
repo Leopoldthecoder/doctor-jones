@@ -2,6 +2,9 @@ export default {
   // boolean, 添加空格
   spacing: true,
 
+  // boolean, 全角符号与字母数字之间允许有空格
+  spaceBetweenFullwidthPunctuationAndAlphabets: false,
+
   // boolean, 允许连续感叹号
   successiveExclamationMarks: false,
 

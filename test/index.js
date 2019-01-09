@@ -3,6 +3,7 @@ import dj from '../src'
 
 const dumbOptions = {
   spacing: false,
+  spaceBetweenFullwidthPunctuationAndAlphabets: true,
   successiveExclamationMarks: true,
   ellipsisTolerance: 'all',
   replaceWithCornerQuotes: 'none'
@@ -20,6 +21,15 @@ test('spacing', t => {
   const input = '你的jira上还有70多个bug没修'
   const output = dj(input, getOptions({ spacing: true }))
   t.is(output, '你的 jira 上还有 70 多个 bug 没修')
+})
+
+test('remove space between fullwidth punctuation and alphabets/numbers', t => {
+  const input = '今年， 5 个项目延期，激怒了 Leader 。'
+  const output = dj(
+    input,
+    getOptions({ spaceBetweenFullwidthPunctuationAndAlphabets: false })
+  )
+  t.is(output, '今年，5 个项目延期，激怒了 Leader。')
 })
 
 test('remove successive exclamation marks', t => {

@@ -2,12 +2,15 @@ import pangu from 'pangu/dist/shared/core'
 import { merge } from './utils'
 import defaultOptions from './default-options'
 
+const fullwidthPunctuationSpaceAlphabets = /([，。：；！？（）、〈〉《》“”‘’「」『』〔〕【】〖〗⦗⦘〘〙…●～—])\s+([a-zA-Z0-9])/g
+const alphabetsSpaceFullwidthPunctuation = /([a-zA-Z0-9])\s+([，。：；！？（）、〈〉《》“”‘’「」『』〔〕【】〖〗⦗⦘〘〙…●～—])/g
 const dotsSpaceCjk = /(\.{3,})\s([\u2e80-\u2eff\u2f00-\u2fdf\u3040-\u309f\u30a0-\u30ff\u3100-\u312f\u3200-\u32ff\u3400-\u4dbf\u4e00-\u9fff\uf900-\ufaff])/g
 
 const dj = (input, userOptions) => {
   const options = merge(defaultOptions, userOptions)
   const {
     spacing,
+    spaceBetweenFullwidthPunctuationAndAlphabets,
     successiveExclamationMarks,
     ellipsisTolerance,
     replaceWithCornerQuotes,
@@ -18,6 +21,12 @@ const dj = (input, userOptions) => {
 
   if (spacing) {
     output = pangu.spacing(output).replace(dotsSpaceCjk, '$1$2')
+  }
+
+  if (!spaceBetweenFullwidthPunctuationAndAlphabets) {
+    output = output
+      .replace(fullwidthPunctuationSpaceAlphabets, '$1$2')
+      .replace(alphabetsSpaceFullwidthPunctuation, '$1$2')
   }
 
   if (!successiveExclamationMarks) {
