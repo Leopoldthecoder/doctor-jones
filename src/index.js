@@ -7,11 +7,12 @@ const alphabetsSpaceFullwidthPunctuation = /([a-zA-Z0-9])\s+([，。：；！？
 const dotsSpaceCjk = /(\.{3,})\s([\u2e80-\u2eff\u2f00-\u2fdf\u3040-\u309f\u30a0-\u30ff\u3100-\u312f\u3200-\u32ff\u3400-\u4dbf\u4e00-\u9fff\uf900-\ufaff])/g
 
 const dj = (input, userOptions) => {
-  const options = merge(defaultOptions, userOptions)
+  const options = merge({}, defaultOptions, userOptions)
   const {
     spacing,
     spaceBetweenFullwidthPunctuationAndAlphabets,
     successiveExclamationMarks,
+    replaceHalfwidthWithFullwidth,
     ellipsisTolerance,
     replaceWithCornerQuotes,
     halfwidthParenthesisAroundNumbers
@@ -31,6 +32,34 @@ const dj = (input, userOptions) => {
 
   if (!successiveExclamationMarks) {
     output = output.replace(/！{2,}/g, '！')
+  }
+
+  if (replaceHalfwidthWithFullwidth) {
+    let replacedOutput = ''
+    let isOpenDoubleQuote = true
+    let isOpenSingleQuote = true
+    const len = output.length
+    for (let i = 0; i < len; i++) {
+      const code = output.charCodeAt(i)
+      if ([33, 40, 41, 44, 58, 59, 63].indexOf(code) > -1) {
+        replacedOutput += String.fromCharCode(code + 65248)
+        const nextCode = output.charCodeAt(i + 1)
+        if (nextCode === 32) {
+          i++
+        }
+      } else if (code === 46) {
+        replacedOutput += '。'
+      } else if (code === 34) {
+        replacedOutput += isOpenDoubleQuote ? '“' : '”'
+        isOpenDoubleQuote = !isOpenDoubleQuote
+      } else if (code === 39) {
+        replacedOutput += isOpenSingleQuote ? '‘' : '’'
+        isOpenSingleQuote = !isOpenSingleQuote
+      } else {
+        replacedOutput += output[i]
+      }
+    }
+    output = replacedOutput
   }
 
   if (ellipsisTolerance === 'none' || ellipsisTolerance === '...') {

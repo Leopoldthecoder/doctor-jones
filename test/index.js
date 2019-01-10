@@ -5,11 +5,12 @@ const dumbOptions = {
   spacing: false,
   spaceBetweenFullwidthPunctuationAndAlphabets: true,
   successiveExclamationMarks: true,
+  replaceHalfwidthWithFullwidth: false,
   ellipsisTolerance: 'all',
   replaceWithCornerQuotes: 'none'
 }
 
-const getOptions = option => Object.assign(dumbOptions, option)
+const getOptions = option => Object.assign({}, dumbOptions, option)
 
 test('do nothing', t => {
   const input = '增加文字的readabitily...'
@@ -36,6 +37,16 @@ test('remove successive exclamation marks', t => {
   const input = '上台拿衣服！！！'
   const output = dj(input, getOptions({ successiveExclamationMarks: false }))
   t.is(output, '上台拿衣服！')
+})
+
+test('replace halfwidth punctuations with fullwidth ones', t => {
+  const input =
+    '副本表格为普通表格, 工具栏中显示"新建表格", 同名表单工作表的下拉三角菜单中也显示为普通表格的操作.'
+  const output = dj(input, getOptions({ replaceHalfwidthWithFullwidth: true }))
+  t.is(
+    output,
+    '副本表格为普通表格，工具栏中显示“新建表格”，同名表单工作表的下拉三角菜单中也显示为普通表格的操作。'
+  )
 })
 
 test('normalize ellipsis', t => {
