@@ -1,10 +1,20 @@
 import pangu from 'pangu/dist/shared/core'
-import { merge } from './utils'
+import { merge, composeRegExp } from './utils'
+import { CJK, FULLWIDTH_PUNCTUATION, ALPHABETS_AND_NUMBERS } from './consts'
 import defaultOptions from './default-options'
 
-const fullwidthPunctuationSpaceAlphabets = /([，。：；！？（）、〈〉《》“”‘’「」『』〔〕【】〖〗⦗⦘〘〙…●～—])\s+([a-zA-Z0-9])/g
-const alphabetsSpaceFullwidthPunctuation = /([a-zA-Z0-9])\s+([，。：；！？（）、〈〉《》“”‘’「」『』〔〕【】〖〗⦗⦘〘〙…●～—])/g
-const dotsSpaceCjk = /(\.{3,})\s([\u2e80-\u2eff\u2f00-\u2fdf\u3040-\u309f\u30a0-\u30ff\u3100-\u312f\u3200-\u32ff\u3400-\u4dbf\u4e00-\u9fff\uf900-\ufaff])/g
+const fullwidthPunctuationSpaceAlphabets = composeRegExp({
+  flags: 'g',
+  parts: [FULLWIDTH_PUNCTUATION, /\s+/, ALPHABETS_AND_NUMBERS]
+})
+const alphabetsSpaceFullwidthPunctuation = composeRegExp({
+  flags: 'g',
+  parts: [ALPHABETS_AND_NUMBERS, /\s+/, FULLWIDTH_PUNCTUATION]
+})
+const dotsSpaceCjk = composeRegExp({
+  flags: 'g',
+  parts: ['(\\.{3,})', '\\s', CJK]
+})
 
 const dj = (input, userOptions) => {
   const options = merge({}, defaultOptions, userOptions)

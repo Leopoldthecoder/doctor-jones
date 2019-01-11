@@ -12,3 +12,6 @@ export const merge = (target, ...sources) => {
   }
   return target
 }
+
+export const composeRegExp = ({ flags, parts }) =>
+  new RegExp(parts.map(part => String(part).slice(1, -1)).join(''), flags)
