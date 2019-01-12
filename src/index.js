@@ -4,15 +4,12 @@ import { CJK, FULLWIDTH_PUNCTUATION, ALPHABETS_AND_NUMBERS } from './consts'
 import defaultOptions from './default-options'
 
 const fullwidthPunctuationSpaceAlphabets = composeRegExp({
-  flags: 'g',
   parts: [FULLWIDTH_PUNCTUATION, /\s+/, ALPHABETS_AND_NUMBERS]
 })
 const alphabetsSpaceFullwidthPunctuation = composeRegExp({
-  flags: 'g',
   parts: [ALPHABETS_AND_NUMBERS, /\s+/, FULLWIDTH_PUNCTUATION]
 })
 const dotsSpaceCjk = composeRegExp({
-  flags: 'g',
   parts: ['(\\.{3,})', '\\s', CJK]
 })
 
