@@ -1,0 +1,16 @@
+{
+  "name": "example",
+  "private": true,
+  "scripts": {
+    "build": "poi --prod",
+    "dev": "poi --serve",
+    "lint": "eslint ."
+  },
+  "devDependencies": {
+    "@poi/plugin-eslint": "^12.0.0",
+    "eslint": "^5.9.0",
+    "eslint-config-doran": "^1.0.7",
+    "eslint-config-xo": "^0.25.0",
+    "poi": "^12.4.2"
+  }
+}

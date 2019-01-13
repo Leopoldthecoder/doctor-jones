@@ -1,0 +1,14 @@
+{
+  "name": "doctor-jones-loader",
+  "version": "0.0.1",
+  "description": "A webpack loader of doctor-jones",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Leopoldthecoder",
+  "license": "MIT",
+  "dependencies": {
+    "doctor-jones": "file:../.."
+  }
+}
