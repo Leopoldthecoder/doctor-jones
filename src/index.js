@@ -10,10 +10,14 @@ const alphabetsSpaceFullwidthPunctuation = composeRegExp({
   parts: [ALPHABETS_AND_NUMBERS, /\s+/, FULLWIDTH_PUNCTUATION]
 })
 const dotsSpaceCjk = composeRegExp({
-  parts: ['(\\.{3,})', '\\s', CJK]
+  parts: [/(\\.{3,})/, /\s/, CJK]
+})
+const spaceQuoteSpace = composeRegExp({
+  parts: [/\s*/, /(['"“”‘’「」『』])/, /\s*/]
 })
 
 const dj = (input, userOptions) => {
+  if (!CJK.test(input)) return input
   const options = merge({}, defaultOptions, userOptions)
   const {
     spacing,
@@ -28,7 +32,10 @@ const dj = (input, userOptions) => {
   let output = input
 
   if (spacing) {
-    output = pangu.spacing(output).replace(dotsSpaceCjk, '$1$2')
+    output = pangu
+      .spacing(output)
+      .replace(dotsSpaceCjk, '$1$2')
+      .replace(spaceQuoteSpace, '$1')
   }
 
   if (!spaceBetweenFullwidthPunctuationAndAlphabets) {

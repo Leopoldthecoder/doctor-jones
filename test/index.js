@@ -7,7 +7,8 @@ const dumbOptions = {
   successiveExclamationMarks: true,
   replaceHalfwidthWithFullwidth: false,
   ellipsisTolerance: 'all',
-  replaceWithCornerQuotes: 'none'
+  replaceWithCornerQuotes: 'none',
+  halfwidthParenthesisAroundNumbers: false
 }
 
 const getOptions = option => Object.assign({}, dumbOptions, option)

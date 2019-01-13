@@ -8,7 +8,7 @@ export default {
   // boolean, 允许连续感叹号
   successiveExclamationMarks: false,
 
-  // boolean, 使用全角符号替换半角符号，作用于 ! ( ) “”‘’, . : ; ?
+  // boolean, 使用全角符号替换半角符号，作用于 ! ( ) "', . : ; ?
   replaceHalfwidthWithFullwidth: true,
 
   // string: 'none' | '...' | 'all'，允许的省略号
