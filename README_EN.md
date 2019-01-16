@@ -21,7 +21,7 @@ As a tool set, `doctor-jones` includes:
 
 * [ ] An `npm` package which takes a string and returns the formatted output (almost done)
 * [ ] A `webpack` loader which formats your string literals in `.js`, `.ts`, `.jsx`, `.tsx`, `.vue` files (WIP🚧)
-* [ ] A ready-to-use website where you can paste some text and get the formatted output, aka. `doctor-jones-as-a-service`, or `DJAAS` (in plan)
+* [ ] A ready-to-use website where you can paste some text and get the formatted output, aka. `doctor-jones-as-a-service`, or `DJaaS` (in plan)
 * [ ] A `vscode` plugin and a `WebStorm` plugin which format your code on save (in plan)
 
 Currently this project is in a very early stage.
