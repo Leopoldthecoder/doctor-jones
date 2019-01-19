@@ -1,3 +1,18 @@
+## [0.0.3](https://github.com/Leopoldthecoder/doctor-jones/compare/0.0.2...0.0.3) (2019-01-19)
+
+
+### Bug Fixes
+
+* remove unnecessary space around quotation marks ([d751fb7](https://github.com/Leopoldthecoder/doctor-jones/commit/d751fb7))
+
+
+### Features
+
+* add replaceHalfwidthWithFullwidth ([0323d6e](https://github.com/Leopoldthecoder/doctor-jones/commit/0323d6e))
+* **loader:** init doctor-jones-loader ([9ff359c](https://github.com/Leopoldthecoder/doctor-jones/commit/9ff359c))
+
+
+
 ## [0.0.2](https://github.com/Leopoldthecoder/doctor-jones/compare/0.0.1...0.0.2) (2019-01-09)
 
 
