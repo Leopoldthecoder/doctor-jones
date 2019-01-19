@@ -32,7 +32,7 @@
     "ava": "^1.0.1",
     "conventional-changelog-cli": "^2.0.11",
     "cross-env": "^5.2.0",
-    "eslint-config-doran": "^1.0.7",
+    "eslint-config-doran": "^1.0.8",
     "esm": "^3.0.84",
     "prettier": "^1.15.3",
     "rimraf": "^2.6.3",
