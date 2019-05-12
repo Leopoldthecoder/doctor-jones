@@ -1,11 +1,13 @@
 import test from 'ava'
+import random from 'chinese-random-name'
 import dj from '../src'
+
+const getRandomCharacters = random.generate
 
 const dumbOptions = {
   spacing: false,
   spaceBetweenFullwidthPunctuationAndAlphabets: true,
   successiveExclamationMarks: true,
-  replaceHalfwidthWithFullwidth: false,
   ellipsisTolerance: 'all',
   replaceWithCornerQuotes: 'none',
   halfwidthParenthesisAroundNumbers: false
@@ -14,44 +16,50 @@ const dumbOptions = {
 const getOptions = option => Object.assign({}, dumbOptions, option)
 
 test('do nothing', t => {
-  const input = '增加文字的readabitily...'
+  const chinese = getRandomCharacters(3)
+  const input = `${chinese}readabitily...`
   const output = dj(input, dumbOptions)
   t.is(output, input)
 })
 
 test('spacing', t => {
-  const input = '你的jira上还有70多个bug没修'
+  const chinese = [
+    getRandomCharacters(3),
+    getRandomCharacters(3),
+    getRandomCharacters(3)
+  ]
+  const input = `${chinese[0]}abcd${chinese[1]}42${chinese[2]}xyz`
   const output = dj(input, getOptions({ spacing: true }))
-  t.is(output, '你的 jira 上还有 70 多个 bug 没修')
+  t.is(output, `${chinese[0]} abcd ${chinese[1]} 42 ${chinese[2]} xyz`)
 })
 
 test('remove space between fullwidth punctuation and alphabets/numbers', t => {
-  const input = '今年， 5 个项目延期，激怒了 Leader 。'
+  const chinese = [getRandomCharacters(3), getRandomCharacters(3)]
+  const input = `${chinese[0]}， 1 ${chinese[1]} xyz 。`
   const output = dj(
     input,
     getOptions({ spaceBetweenFullwidthPunctuationAndAlphabets: false })
   )
-  t.is(output, '今年，5 个项目延期，激怒了 Leader。')
+  t.is(output, `${chinese[0]}，1 ${chinese[1]} xyz。`)
 })
 
 test('remove successive exclamation marks', t => {
-  const input = '上台拿衣服！！！'
+  const chinese = getRandomCharacters(3)
+  const input = `${chinese}！！！`
   const output = dj(input, getOptions({ successiveExclamationMarks: false }))
-  t.is(output, '上台拿衣服！')
-})
-
-test('replace halfwidth punctuations with fullwidth ones', t => {
-  const input =
-    '副本表格为普通表格, 工具栏中显示"新建表格", 同名表单工作表的下拉三角菜单中也显示为普通表格的操作.'
-  const output = dj(input, getOptions({ replaceHalfwidthWithFullwidth: true }))
-  t.is(
-    output,
-    '副本表格为普通表格，工具栏中显示“新建表格”，同名表单工作表的下拉三角菜单中也显示为普通表格的操作。'
-  )
+  t.is(output, `${chinese}！`)
 })
 
 test('normalize ellipsis', t => {
-  const input = '怎么，，，咬、、不...断。。。。'
+  const chinese = [
+    getRandomCharacters(3),
+    getRandomCharacters(3),
+    getRandomCharacters(3),
+    getRandomCharacters(3)
+  ]
+  const input = `${chinese[0]}，，，${chinese[1]}、、${chinese[2]}...${
+    chinese[3]
+  }。。。。`
   const noneToleranceOutput = dj(
     input,
     getOptions({ ellipsisTolerance: 'none' })
@@ -60,12 +68,23 @@ test('normalize ellipsis', t => {
     input,
     getOptions({ ellipsisTolerance: '...' })
   )
-  t.is(noneToleranceOutput, '怎么……咬……不……断……')
-  t.is(dotsToleratedOutput, '怎么……咬……不...断……')
+  t.is(
+    noneToleranceOutput,
+    `${chinese[0]}……${chinese[1]}……${chinese[2]}……${chinese[3]}……`
+  )
+  t.is(
+    dotsToleratedOutput,
+    `${chinese[0]}……${chinese[1]}……${chinese[2]}...${chinese[3]}……`
+  )
 })
 
 test('replace quotation marks', t => {
-  const input = '他说：“什么是‘两开花’？”'
+  const chinese = [
+    getRandomCharacters(3),
+    getRandomCharacters(3),
+    getRandomCharacters(3)
+  ]
+  const input = `${chinese[0]}：“${chinese[1]}‘${chinese[2]}’？”`
   const doubleQuoteOutput = dj(
     input,
     getOptions({ replaceWithCornerQuotes: 'double' })
@@ -74,15 +93,16 @@ test('replace quotation marks', t => {
     input,
     getOptions({ replaceWithCornerQuotes: 'single' })
   )
-  t.is(doubleQuoteOutput, '他说：「什么是『两开花』？」')
-  t.is(singleQuoteOutput, '他说：『什么是「两开花」？』')
+  t.is(doubleQuoteOutput, `${chinese[0]}：「${chinese[1]}『${chinese[2]}』？」`)
+  t.is(singleQuoteOutput, `${chinese[0]}：『${chinese[1]}「${chinese[2]}」？』`)
 })
 
 test('halfwidth parenthesis around numbers', t => {
-  const input = '今年（2019）'
+  const chinese = getRandomCharacters(3)
+  const input = `${chinese}（2019）`
   const output = dj(
     input,
     getOptions({ halfwidthParenthesisAroundNumbers: true })
   )
-  t.is(output, '今年 (2019)')
+  t.is(output, `${chinese}(2019)`)
 })

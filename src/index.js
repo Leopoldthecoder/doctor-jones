@@ -1,104 +1,193 @@
-import pangu from 'pangu/dist/shared/core'
-import { merge, composeRegExp } from './utils'
-import { CJK, FULLWIDTH_PUNCTUATION, ALPHABETS_AND_NUMBERS } from './consts'
 import defaultOptions from './default-options'
-
-const fullwidthPunctuationSpaceAlphabets = composeRegExp({
-  parts: [FULLWIDTH_PUNCTUATION, /\s+/, ALPHABETS_AND_NUMBERS]
-})
-const alphabetsSpaceFullwidthPunctuation = composeRegExp({
-  parts: [ALPHABETS_AND_NUMBERS, /\s+/, FULLWIDTH_PUNCTUATION]
-})
-const dotsSpaceCjk = composeRegExp({
-  parts: [/(\\.{3,})/, /\s/, CJK]
-})
-const spaceQuoteSpace = composeRegExp({
-  parts: [/\s*/, /(['"“”‘’「」『』])/, /\s*/]
-})
+import { tokenTypes, operationTypes } from './consts'
+import { merge } from './utils'
+import lexer from './syntax-parser'
 
 const dj = (input, userOptions) => {
-  if (!CJK.test(input)) return input
   const options = merge({}, defaultOptions, userOptions)
   const {
     spacing,
     spaceBetweenFullwidthPunctuationAndAlphabets,
     successiveExclamationMarks,
-    replaceHalfwidthWithFullwidth,
     ellipsisTolerance,
     replaceWithCornerQuotes,
     halfwidthParenthesisAroundNumbers
   } = options
 
-  let output = input
+  // Diagnose
+  const tokens = lexer(input)
 
-  if (spacing) {
-    output = pangu
-      .spacing(output)
-      .replace(dotsSpaceCjk, '$1$2')
-      .replace(spaceQuoteSpace, '$1')
-  }
+  let output = ''
+  const op = []
 
-  if (!spaceBetweenFullwidthPunctuationAndAlphabets) {
-    output = output
-      .replace(fullwidthPunctuationSpaceAlphabets, '$1$2')
-      .replace(alphabetsSpaceFullwidthPunctuation, '$1$2')
-  }
+  for (let i = 0; i < tokens.length; i++) {
+    const token = tokens[i]
+    const nextToken = tokens[i + 1] || {}
+    const prevToken = tokens[i - 1] || {}
 
-  if (!successiveExclamationMarks) {
-    output = output.replace(/！{2,}/g, '！')
-  }
-
-  if (replaceHalfwidthWithFullwidth) {
-    let replacedOutput = ''
-    let isOpenDoubleQuote = true
-    let isOpenSingleQuote = true
-    const len = output.length
-    for (let i = 0; i < len; i++) {
-      const code = output.charCodeAt(i)
-      if ([33, 40, 41, 44, 58, 59, 63].indexOf(code) > -1) {
-        replacedOutput += String.fromCharCode(code + 65248)
-        const nextCode = output.charCodeAt(i + 1)
-        if (nextCode === 32) {
-          i++
-        }
-      } else if (code === 46) {
-        replacedOutput += '。'
-      } else if (code === 34) {
-        replacedOutput += isOpenDoubleQuote ? '“' : '”'
-        isOpenDoubleQuote = !isOpenDoubleQuote
-      } else if (code === 39) {
-        replacedOutput += isOpenSingleQuote ? '‘' : '’'
-        isOpenSingleQuote = !isOpenSingleQuote
-      } else {
-        replacedOutput += output[i]
+    if (spacing) {
+      if (
+        (token.type === tokenTypes.CJK &&
+          (nextToken.type === tokenTypes.ALPHABETS_AND_NUMBERS ||
+            nextToken.type === tokenTypes.NUMBERS)) ||
+        ((token.type === tokenTypes.ALPHABETS_AND_NUMBERS ||
+          token.type === tokenTypes.NUMBERS) &&
+          nextToken.type === tokenTypes.CJK)
+      ) {
+        op.push({
+          type: operationTypes.ADD,
+          position: token.position[1],
+          content: ' '
+        })
       }
     }
-    output = replacedOutput
+
+    if (!spaceBetweenFullwidthPunctuationAndAlphabets) {
+      if (
+        (prevToken.type === tokenTypes.FULLWIDTH_PUNCTUATION &&
+          token.type === tokenTypes.WHITESPACE &&
+          (nextToken.type === tokenTypes.ALPHABETS_AND_NUMBERS ||
+            nextToken.type === tokenTypes.NUMBERS)) ||
+        ((prevToken.type === tokenTypes.ALPHABETS_AND_NUMBERS ||
+          prevToken.type === tokenTypes.NUMBERS) &&
+          token.type === tokenTypes.WHITESPACE &&
+          nextToken.type === tokenTypes.FULLWIDTH_PUNCTUATION)
+      ) {
+        op.push({
+          type: operationTypes.REMOVE,
+          position: token.position[0],
+          length: token.position[1] - token.position[0] + 1
+        })
+      }
+    }
+
+    if (!successiveExclamationMarks) {
+      if (token.type === tokenTypes.SUCCESSIVE_FULLWIDTH_EXCLAMATION) {
+        op.push({
+          type: operationTypes.REPLACE,
+          position: token.position[0],
+          length: token.position[1] - token.position[0] + 1,
+          content: '！'
+        })
+      }
+    }
+
+    if (ellipsisTolerance === 'none' || ellipsisTolerance === '...') {
+      if (
+        (ellipsisTolerance === 'none' &&
+          (token.type === tokenTypes.INVALID_ELLIPSIS ||
+            token.type === tokenTypes.DOTS_AS_ELLIPSIS)) ||
+        (ellipsisTolerance === '...' &&
+          token.type === tokenTypes.INVALID_ELLIPSIS)
+      ) {
+        op.push({
+          type: operationTypes.REPLACE,
+          position: token.position[0],
+          length: token.position[1] - token.position[0] + 1,
+          content: '……'
+        })
+      }
+    }
+
+    if (halfwidthParenthesisAroundNumbers) {
+      if (
+        prevToken.type === tokenTypes.FULLWIDTH_LEFT_PAREN &&
+        token.type === tokenTypes.NUMBERS &&
+        nextToken.type === tokenTypes.FULLWIDTH_RIGHT_PAREN
+      ) {
+        op.push(
+          {
+            type: operationTypes.REPLACE,
+            position: prevToken.position[0],
+            length: prevToken.position[1] - prevToken.position[0] + 1,
+            content: '('
+          },
+          {
+            type: operationTypes.REPLACE,
+            position: nextToken.position[0],
+            length: nextToken.position[1] - nextToken.position[0] + 1,
+            content: ')'
+          }
+        )
+      }
+    }
+
+    if (
+      replaceWithCornerQuotes === 'double' ||
+      replaceWithCornerQuotes === 'single'
+    ) {
+      switch (token.type) {
+        case tokenTypes.FULLWIDTH_LEFT_SINGLE_QUOTE:
+          op.push({
+            type: operationTypes.REPLACE,
+            position: token.position[0],
+            length: token.position[1] - token.position[0] + 1,
+            content: replaceWithCornerQuotes === 'double' ? '『' : '「'
+          })
+          break
+        case tokenTypes.FULLWIDTH_RIGHT_SINGLE_QUOTE:
+          op.push({
+            type: operationTypes.REPLACE,
+            position: token.position[0],
+            length: token.position[1] - token.position[0] + 1,
+            content: replaceWithCornerQuotes === 'double' ? '』' : '」'
+          })
+          break
+        case tokenTypes.FULLWIDTH_LEFT_DOUBLE_QUOTE:
+          op.push({
+            type: operationTypes.REPLACE,
+            position: token.position[0],
+            length: token.position[1] - token.position[0] + 1,
+            content: replaceWithCornerQuotes === 'double' ? '「' : '『'
+          })
+          break
+        case tokenTypes.FULLWIDTH_RIGHT_DOUBLE_QUOTE:
+          op.push({
+            type: operationTypes.REPLACE,
+            position: token.position[0],
+            length: token.position[1] - token.position[0] + 1,
+            content: replaceWithCornerQuotes === 'double' ? '」' : '』'
+          })
+          break
+        default:
+          break
+      }
+    }
   }
 
-  if (ellipsisTolerance === 'none' || ellipsisTolerance === '...') {
-    const invalidEllipsis =
-      ellipsisTolerance === 'none' ? /[。，、.]{2,}/g : /[。，、]{2,}/g
-    output = output.replace(invalidEllipsis, '……')
+  // Operate
+  if (!op.length) {
+    return input
   }
+  let currentOpIndex = 0
+  for (let i = 0; i < input.length; i++) {
+    const currentOp = op[currentOpIndex]
+    if (!currentOp) {
+      output += input[i]
+      continue
+    }
 
-  if (
-    replaceWithCornerQuotes === 'double' ||
-    replaceWithCornerQuotes === 'single'
-  ) {
-    output = output
-      .replace(
-        replaceWithCornerQuotes === 'double' ? /(“)(.*)(”)/g : /(‘)(.*)(’)/g,
-        '「$2」'
-      )
-      .replace(
-        replaceWithCornerQuotes === 'double' ? /(‘)(.*)(’)/g : /(“)(.*)(”)/g,
-        '『$2』'
-      )
-  }
-
-  if (halfwidthParenthesisAroundNumbers) {
-    output = output.replace(/([^\s])\s*(（)(\s*[0-9.]+\s*)(）)/g, '$1 ($3)')
+    const { position, type, content, length } = currentOp
+    if (i === position) {
+      switch (type) {
+        case operationTypes.ADD:
+          output += `${input[i]}${content}`
+          break
+        case operationTypes.REPLACE:
+          output += content
+          i += length - 1
+          break
+        case operationTypes.REMOVE:
+          output += ''
+          i += length - 1
+          break
+        default:
+          break
+      }
+      currentOpIndex++
+    } else {
+      output += input[i]
+    }
   }
 
   return output

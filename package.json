@@ -25,11 +25,10 @@
     "url": "https://github.com/Leopoldthecoder/doctor-jones/issues"
   },
   "homepage": "https://github.com/Leopoldthecoder/doctor-jones#readme",
-  "dependencies": {
-    "pangu": "^3.3.0"
-  },
+  "dependencies": {},
   "devDependencies": {
     "ava": "^1.0.1",
+    "chinese-random-name": "^1.0.0",
     "conventional-changelog-cli": "^2.0.11",
     "cross-env": "^5.2.0",
     "eslint-config-doran": "^1.0.8",
