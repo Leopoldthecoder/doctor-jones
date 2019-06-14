@@ -63,6 +63,10 @@ export default createLexer([
     regexes: [/^([a-zA-Z0-9]+)/]
   },
   {
+    type: tokenTypes.HALFWIDTH_CHAR,
+    regexes: [/^([\u0020-\u00ff]+?)/]
+  },
+  {
     type: tokenTypes.MISC,
     regexes: [/^(.+)/]
   }

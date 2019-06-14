@@ -16,6 +16,15 @@ const dj = (input, userOptions) => {
 
   // Diagnose
   const tokens = lexer(input)
+  if (
+    !tokens.some(
+      token =>
+        token.type === tokenTypes.CJK ||
+        token.type === tokenTypes.FULLWIDTH_PUNCTUATION
+    )
+  ) {
+    return input
+  }
 
   let output = ''
   const op = []
