@@ -1,3 +1,12 @@
+## [0.1.1](https://github.com/Leopoldthecoder/doctor-jones/compare/0.1.0...0.1.1) (2019-06-14)
+
+
+### Bug Fixes
+
+* fix a bug caused by half-width characters ([9d1c2a2](https://github.com/Leopoldthecoder/doctor-jones/commit/9d1c2a2))
+
+
+
 # [0.1.0](https://github.com/Leopoldthecoder/doctor-jones/compare/0.0.3...0.1.0) (2019-05-12)
 
 
