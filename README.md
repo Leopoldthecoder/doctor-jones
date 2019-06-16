@@ -1,4 +1,7 @@
 # Doctor Jones
+
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/50dd6b9d9f294edfa1cdbf7ebdfc9b28)](https://app.codacy.com/app/Leopoldthecoder/doctor-jones?utm_source=github.com&utm_medium=referral&utm_content=Leopoldthecoder/doctor-jones&utm_campaign=Badge_Grade_Dashboard)
+
 > After all, we should all respect [w3c/clreq](https://github.com/w3c/clreq)
 
 [English documentation](./README_EN.md)
