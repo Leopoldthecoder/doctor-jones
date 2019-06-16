@@ -3,7 +3,7 @@
 
 [中文文档](./README.md)
 
-`doctor-jones` is a tool set designed for formatting Chinese texts, especially when mixed with Western texts, based on [w3c/clreq](https://github.com/w3c/clreq) and other best practices.
+`doctor-jones` is a toolbox designed for formatting Chinese texts, especially when mixed with Western texts, based on [w3c/clreq](https://github.com/w3c/clreq) and other best practices.
 
 Here "formatting" means:
 
@@ -14,13 +14,11 @@ Here "formatting" means:
 * Removing successive exclamation marks
 * Replacing fullwidth brackets around numbers with halfwidth ones
 
-Note that these formats only take effects on texts with at least one Chines character. And all the above formats can be turned off using options.
+Note that these formats only take effects on texts with at least one Chinese character. And all the above formats can be turned off using options.
 
 As a tool set, `doctor-jones` includes:
 
-* [ ] An `npm` package which takes a string and returns the formatted output (done)
-* [ ] A `webpack` loader which formats your string literals in `.js`, `.ts`, `.jsx`, `.tsx`, `.vue` files (WIP🚧)
+* [x] An `npm` package which takes a string and returns the formatted output
+* [x] A `webpack` loader which formats your strings in `.js`, `.ts`, `.jsx`, `.tsx`, `.vue` files
 * [ ] A ready-to-use website where you can paste some text and get the formatted output, aka. `doctor-jones-as-a-service`, or `DJaaS` (in plan)
-* [ ] A Chrome extension which format the web page you're browsing (in plan)
-
-Currently this project is in a very early stage.
+* [ ] A Chrome extension which formats the web page you're browsing (in plan)
