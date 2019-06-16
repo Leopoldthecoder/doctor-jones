@@ -1,3 +1,12 @@
+## [0.1.2](https://github.com/Leopoldthecoder/doctor-jones/compare/0.1.1...0.1.2) (2019-06-16)
+
+
+### Features
+
+* reduce npm package size ([788042e](https://github.com/Leopoldthecoder/doctor-jones/commit/788042e))
+
+
+
 ## [0.1.1](https://github.com/Leopoldthecoder/doctor-jones/compare/0.1.0...0.1.1) (2019-06-14)
 
 
