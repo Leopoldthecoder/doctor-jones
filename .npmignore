@@ -1,2 +1,7 @@
 .idea
+.eslintrc
+.prettierrc.js
+rollup.config.js
 build
+scripts
+test
