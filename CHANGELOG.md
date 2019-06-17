@@ -1,3 +1,12 @@
+## [0.2.2](https://github.com/Leopoldthecoder/doctor-jones/compare/0.2.1...0.2.2) (2019-06-17)
+
+
+### Bug Fixes
+
+* wrong cli file name ([5d8d165](https://github.com/Leopoldthecoder/doctor-jones/commit/5d8d165))
+
+
+
 ## [0.2.1](https://github.com/Leopoldthecoder/doctor-jones/compare/0.2.0...0.2.1) (2019-06-17)
 
 
