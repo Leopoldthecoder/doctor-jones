@@ -1,3 +1,12 @@
+## [0.2.1](https://github.com/Leopoldthecoder/doctor-jones/compare/0.2.0...0.2.1) (2019-06-17)
+
+
+### Bug Fixes
+
+* missing cli registration in package.json ([e96b029](https://github.com/Leopoldthecoder/doctor-jones/commit/e96b029))
+
+
+
 # [0.2.0](https://github.com/Leopoldthecoder/doctor-jones/compare/0.1.2...0.2.0) (2019-06-17)
 
 

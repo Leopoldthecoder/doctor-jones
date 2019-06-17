@@ -1,6 +1,6 @@
 {
   "name": "doctor-jones",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "After all, we should all respect w3c/clreq",
   "main": "dist/index.cjs.js",
   "browser": "dist/index.umd.js",
