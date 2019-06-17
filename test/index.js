@@ -66,7 +66,7 @@ test('normalize ellipsis', t => {
   )
   const dotsToleratedOutput = dj(
     input,
-    getOptions({ ellipsisTolerance: '...' })
+    getOptions({ ellipsisTolerance: '3dots' })
   )
   t.is(
     noneToleranceOutput,

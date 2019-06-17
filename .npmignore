@@ -1,6 +1,9 @@
 .idea
 .eslintrc
 .prettierrc.js
+.nyc_output
+.travis.yml
+coverage
 rollup.config.js
 build
 scripts

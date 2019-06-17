@@ -81,12 +81,12 @@ const dj = (input, userOptions) => {
       }
     }
 
-    if (ellipsisTolerance === 'none' || ellipsisTolerance === '...') {
+    if (ellipsisTolerance === 'none' || ellipsisTolerance === '3dots') {
       if (
         (ellipsisTolerance === 'none' &&
           (token.type === tokenTypes.INVALID_ELLIPSIS ||
             token.type === tokenTypes.DOTS_AS_ELLIPSIS)) ||
-        (ellipsisTolerance === '...' &&
+        (ellipsisTolerance === '3dots' &&
           token.type === tokenTypes.INVALID_ELLIPSIS)
       ) {
         op.push({

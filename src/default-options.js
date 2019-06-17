@@ -8,7 +8,7 @@ export default {
   // boolean, 允许连续感叹号
   successiveExclamationMarks: false,
 
-  // string: 'none' | '...' | 'all'，允许的省略号
+  // string: 'none' | '3dots' | 'all'，允许的省略号
   ellipsisTolerance: 'none',
 
   // string: 'double' | 'single' | 'none'，使用直角引号替换的弯引号

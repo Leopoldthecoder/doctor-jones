@@ -88,9 +88,9 @@ dj(
     successiveExclamationMarks: false,
   
     // 省略号规范化规则
-    // 可选值：'none' | '...' | 'all'
+    // 可选值：'none' | '3dots' | 'all'
     // 'none'：将连续出现两次或以上的 。、，. 规范化为 ……
-    // '...'：除 ... 以外，将连续出现两次或以上的 。、，. 规范化为 ……
+    // '3dots'：除 ... 以外，将连续出现两次或以上的 。、，. 规范化为 ……
     // 'all'：不进行省略号规范化
     ellipsisTolerance: 'none',
   
@@ -111,3 +111,4 @@ dj(
 ### 感谢
 - [pangu.js](https://github.com/vinta/pangu.js)
 - [syntax-parser](https://github.com/ascoders/syntax-parser)
+- [ElemeFE Style Guide](https://github.com/ElemeFE/style-guide/blob/master/copywriter.md)

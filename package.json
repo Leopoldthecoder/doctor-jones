@@ -25,7 +25,10 @@
     "url": "https://github.com/Leopoldthecoder/doctor-jones/issues"
   },
   "homepage": "https://github.com/Leopoldthecoder/doctor-jones#readme",
-  "dependencies": {},
+  "dependencies": {
+    "yargonaut": "^1.1.4",
+    "yargs": "^13.2.4"
+  },
   "devDependencies": {
     "ava": "^1.0.1",
     "chinese-random-name": "^1.0.0",

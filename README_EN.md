@@ -88,9 +88,9 @@ dj(
     successiveExclamationMarks: false,
   
     // ellipses normalization rule
-    // 'none' | '...' | 'all'
+    // 'none' | '3dots' | 'all'
     // 'none': converts successive 。、，. to ……
-    // '...': converts successive 。、，. to ……, excepted for ...
+    // '3dots': converts successive 。、，. to ……, excepted for ...
     // 'all': no conversion
     ellipsisTolerance: 'none',
   
@@ -111,3 +111,4 @@ dj(
 ### Inspirations
 - [pangu.js](https://github.com/vinta/pangu.js)
 - [syntax-parser](https://github.com/ascoders/syntax-parser)
+- [ElemeFE Style Guide](https://github.com/ElemeFE/style-guide/blob/master/copywriter.md)
