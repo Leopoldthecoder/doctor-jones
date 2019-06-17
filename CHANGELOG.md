@@ -1,3 +1,17 @@
+# [0.2.0](https://github.com/Leopoldthecoder/doctor-jones/compare/0.1.2...0.2.0) (2019-06-17)
+
+
+### Features
+
+* add cli ([5655aa0](https://github.com/Leopoldthecoder/doctor-jones/commit/5655aa0))
+
+
+### BREAKING CHANGES
+
+* three dots for ellipsisTolerance is renamed from '...' to '3dots'
+
+
+
 ## [0.1.2](https://github.com/Leopoldthecoder/doctor-jones/compare/0.1.1...0.1.2) (2019-06-16)
 
 
