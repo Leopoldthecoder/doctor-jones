@@ -16,7 +16,7 @@
     ]
   },
   "bin": {
-    "doctor-jones": "bin/doctor-jones"
+    "doctor-jones": "bin/dj"
   },
   "repository": {
     "type": "git",
