@@ -3,6 +3,10 @@
 const dj = require('../dist/index.cjs')
 const yargonaut = require('yargonaut')
 const chalk = yargonaut.chalk()
+const updateNotifier = require('update-notifier')
+const pkg = require('../package.json')
+
+updateNotifier({ pkg }).notify()
 
 const optionMap = {
   s: 'spacing',
@@ -16,7 +20,12 @@ const optionMap = {
 yargonaut.helpStyle('green.underline').errorsStyle('red.bold')
 
 const argv = require('yargs')
-  .example('', chalk.cyan('doctor-jones -s --el 3dots 需要格式化的字符串'))
+  .example('', chalk.cyan('doctor-jones 需要格式化的字符串'))
+  .example('', chalk.cyan('doctor-jones -s false 需要格式化的字符串'))
+  .example(
+    '',
+    chalk.cyan('doctor-jones -s false --el 3dots 需要格式化的字符串')
+  )
   .group(
     ['s', 'sb', 'ex', 'el', 'q', 'p'],
     chalk.green.underline('Format Options')

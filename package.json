@@ -15,6 +15,9 @@
       "esm"
     ]
   },
+  "bin": {
+    "doctor-jones": "bin/doctor-jones"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Leopoldthecoder/doctor-jones.git"
@@ -26,6 +29,7 @@
   },
   "homepage": "https://github.com/Leopoldthecoder/doctor-jones#readme",
   "dependencies": {
+    "update-notifier": "^3.0.0",
     "yargonaut": "^1.1.4",
     "yargs": "^13.2.4"
   },
