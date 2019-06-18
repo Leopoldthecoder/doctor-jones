@@ -8,6 +8,9 @@
     "dev": "cross-env NODE_ENV=dev rollup --watch -c",
     "build": "rimraf dist && cross-env NODE_ENV=prod rollup -c",
     "test": "nyc ava -v && nyc report --reporter=html",
+    "docs:dev": "vuepress dev docs",
+    "docs:build": "vuepress build docs",
+    "docs:pub": "sh scripts/doc.sh",
     "pub": "sh scripts/release.sh"
   },
   "ava": {
@@ -34,6 +37,7 @@
     "yargs": "^13.2.4"
   },
   "devDependencies": {
+    "@vuepress/plugin-google-analytics": "^1.0.1",
     "ava": "^1.0.1",
     "chinese-random-name": "^1.0.0",
     "conventional-changelog-cli": "^2.0.11",
@@ -49,6 +53,7 @@
     "rollup-plugin-commonjs": "^9.2.0",
     "rollup-plugin-eslint": "^5.0.0",
     "rollup-plugin-node-resolve": "^4.0.0",
-    "rollup-plugin-uglify": "^6.0.0"
+    "rollup-plugin-uglify": "^6.0.0",
+    "vuepress": "^1.0.1"
   }
 }

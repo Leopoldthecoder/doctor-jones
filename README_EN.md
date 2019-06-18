@@ -10,7 +10,9 @@
   <br>
   <span>Links</span>
   <br>
-  <a href='./README.md'>中文文档</a>
+  <a href='https://leopoldthecoder.github.io/doctor-jones/'>文档</a>
+  <span> · </span>
+  <a href='./README.md'>中文 README</a>
   <span> · </span>
   <a href='https://www.npmjs.com/package/doctor-jones'>npm Page</a>
   <br>
@@ -19,14 +21,14 @@
   <br>
   <a href='https://github.com/Leopoldthecoder/doctor-jones-loader'>doctor-jones-loader</a>
   <span> · </span>
-  <span>To Be Developed...</span>
+  <span>More to be developed...</span>
 </p>
 
 ##
 
 ### Introduction
 
-`doctor-jones` is a toolbox designed for formatting Chinese texts, especially when mixed with Western texts, based on [w3c/clreq](https://github.com/w3c/clreq) and other best practices. As a tool set, `doctor-jones` includes:
+`doctor-jones` is a toolbox designed for formatting Chinese texts, especially when mixed with Western texts, based on [w3c/clreq](https://github.com/w3c/clreq) and other best practices. As a toolbox, `doctor-jones` includes:
 
 * [x] An [`npm` package](https://www.npmjs.com/package/doctor-jones) which takes a string and returns the formatted output
 * [x] A [`webpack` loader](https://github.com/Leopoldthecoder/doctor-jones-loader) which formats your strings in `.js`, `.ts`, `.jsx`, `.tsx`, `.vue` files
@@ -42,7 +44,7 @@ Here "formatting" means:
 * Replacing quotation marks `“”` `‘’` with `「」` `『』`
 * Replacing fullwidth brackets around numbers with halfwidth ones
 
-Note that these formats only take effects on texts with at least one Chinese character. And all the above formats can be turned off using options.
+Note that these formats only take effects on texts with at least one Chinese character or one full-width mark. And all the above formats can be turned off using options.
 
 ### Installation
 
@@ -106,6 +108,35 @@ dj(
     halfwidthParenthesisAroundNumbers: true
   }
 )
+```
+
+### CLI
+
+Install doctor-jones globally and you can use it in your terminal:
+
+```bash
+npm i doctor-jones -g
+```
+
+```shell
+$ doctor-jones --help
+
+Format Options
+  --spacing, -s          是否在中文和字母数字之间添加空格                  [boolean]
+  --space-between, --sb  是否允许在全角符号与字母数字之间存在空格           [boolean]
+  --exclamation, --ex    是否允许连续的感叹号                            [boolean]
+  --ellipsis, --el       省略号规范化规则       [choices: "none", "3dots", "all"]
+  --quote, -q            弯引号替换规则     [choices: "none", "double", "single"]
+  --parenthesis, -p      是否在数字周围使用半角括号                       [boolean]
+
+Options:
+  --help, -h     帮助信息                                              [boolean]
+  --version, -v  当前版本                                              [boolean]
+
+Examples:
+    doctor-jones 需要格式化的字符串
+    doctor-jones -s false 需要格式化的字符串
+    doctor-jones -s false --el 3dots 需要格式化的字符串
 ```
 
 ### Inspirations

@@ -10,7 +10,9 @@
   <br>
   <span>链接</span>
   <br>
-  <a href='./README_EN.md'>English Documentation</a>
+  <a href='https://leopoldthecoder.github.io/doctor-jones/'>文档</a>
+  <span> · </span>
+  <a href='./README_EN.md'>English README</a>
   <span> · </span>
   <a href='https://www.npmjs.com/package/doctor-jones'>npm Page</a>
   <br>
@@ -19,14 +21,14 @@
   <br>
   <a href='https://github.com/Leopoldthecoder/doctor-jones-loader'>doctor-jones-loader</a>
   <span> · </span>
-  <span>To Be Developed...</span>
+  <span>More to be developed...</span>
 </p>
 
 ##
 
 ### 介绍
 
-`doctor-jones` 是一个用来格式化中文字符串（包括中英文混排）的工具箱，它基于 [w3c/clreq](https://github.com/w3c/clreq) 及其他中文排版最佳实践。作为一个工具箱，`doctor-jones` 包括：
+`doctor-jones` 是一个用来格式化中文字符串（包括中英文混排）的工具集，它基于 [w3c/clreq](https://github.com/w3c/clreq) 及其他中文排版最佳实践。作为一个工具集，`doctor-jones` 包括：
 
 * [x] 一个 [`npm` 包](https://www.npmjs.com/package/doctor-jones)，用于接收字符串，并返回格式化后的字符串
 * [x] 一个 [`webpack` loader](https://github.com/Leopoldthecoder/doctor-jones-loader)，用于格式化你的 `.js`, `.ts`, `.jsx`, `.tsx`, `.vue` 文件中的字符串
@@ -42,7 +44,7 @@
 * 将引号 `“”` `‘’` 替换为 `「」` `『』`
 * 将纯数字周围的全角括号替换为半角括号
 
-需要注意的是，这些格式化只对至少包含一个中文字符的字符串生效。同时，每个格式化选项都可以通过设置来关闭。
+需要注意的是，这些格式化只对至少包含一个中文字符或全角符号的字符串生效。同时，每个格式化选项都可以通过设置来关闭。
 
 ### 安装
 
@@ -106,6 +108,35 @@ dj(
     halfwidthParenthesisAroundNumbers: true
   }
 )
+```
+
+### CLI
+
+全局安装 doctor-jones，即可在终端中使用：
+
+```bash
+npm i doctor-jones -g
+```
+
+```shell
+$ doctor-jones --help
+
+Format Options
+  --spacing, -s          是否在中文和字母数字之间添加空格                  [boolean]
+  --space-between, --sb  是否允许在全角符号与字母数字之间存在空格           [boolean]
+  --exclamation, --ex    是否允许连续的感叹号                            [boolean]
+  --ellipsis, --el       省略号规范化规则       [choices: "none", "3dots", "all"]
+  --quote, -q            弯引号替换规则     [choices: "none", "double", "single"]
+  --parenthesis, -p      是否在数字周围使用半角括号                       [boolean]
+
+Options:
+  --help, -h     帮助信息                                              [boolean]
+  --version, -v  当前版本                                              [boolean]
+
+Examples:
+    doctor-jones 需要格式化的字符串
+    doctor-jones -s false 需要格式化的字符串
+    doctor-jones -s false --el 3dots 需要格式化的字符串
 ```
 
 ### 感谢
