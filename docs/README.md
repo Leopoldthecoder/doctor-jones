@@ -1,4 +1,7 @@
 ---
+meta:
+  - name: keywords
+    content: doctor jones,composition of mixed text,中英文混排,格式化,排版,自动,空格
 home: true
 heroText: Doctor Jones
 tagline: 中文排版格式化工具

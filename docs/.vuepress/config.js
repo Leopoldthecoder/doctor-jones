@@ -1,7 +1,7 @@
 module.exports = {
   base: '/doctor-jones/',
   title: 'Doctor Jones',
-  description: 'Just playing around',
+  description: '中文排版格式化工具',
   themeConfig: {
     displayAllHeaders: true,
     nav: [
