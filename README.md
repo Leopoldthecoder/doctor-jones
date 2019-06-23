@@ -32,7 +32,7 @@
 
 * [x] 一个 [`npm` 包](https://www.npmjs.com/package/doctor-jones)，用于接收字符串，并返回格式化后的字符串
 * [x] 一个 [`webpack` loader](https://github.com/Leopoldthecoder/doctor-jones-loader)，用于格式化你的 `.js`, `.ts`, `.jsx`, `.tsx`, `.vue` 文件中的字符串
-* [ ] 一个 Chrome 插件，用于格式化当前正在浏览的网页（计划中）
+* [ ] 一个 Chrome 插件，用于格式化当前正在浏览的网页（开发中）
 * [ ] 一个即开即用的网站，粘贴一段文本，得到格式化后的输出，即 `doctor-jones-as-a-service`，简称 `DJaaS`（计划中）
 
 使用 `doctor-jones` 可以做到以下格式化：
