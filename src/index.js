@@ -4,6 +4,9 @@ import { merge } from './utils'
 import lexer from './syntax-parser'
 
 const dj = (input, userOptions) => {
+  if (!input) {
+    return input
+  }
   const options = merge({}, defaultOptions, userOptions)
   const {
     spacing,

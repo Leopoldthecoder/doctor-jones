@@ -3,7 +3,6 @@
   "version": "0.2.2",
   "description": "After all, we should all respect w3c/clreq",
   "main": "dist/index.cjs.js",
-  "browser": "dist/index.umd.js",
   "scripts": {
     "dev": "cross-env NODE_ENV=dev rollup --watch -c",
     "build": "rimraf dist && cross-env NODE_ENV=prod rollup -c",
