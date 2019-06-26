@@ -1,3 +1,12 @@
+## [0.2.3](https://github.com/Leopoldthecoder/doctor-jones/compare/0.2.2...0.2.3) (2019-06-26)
+
+
+### Bug Fixes
+
+* protect against falsy input ([9c3e95d](https://github.com/Leopoldthecoder/doctor-jones/commit/9c3e95d))
+
+
+
 ## [0.2.2](https://github.com/Leopoldthecoder/doctor-jones/compare/0.2.1...0.2.2) (2019-06-17)
 
 
