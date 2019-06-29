@@ -85,7 +85,7 @@ dj(
     // boolean
     spaceBetweenFullwidthPunctuationAndAlphabets: false,
 
-    // whether successive exclamation marks are removed  
+    // whether successive exclamation marks are allowed 
     // boolean
     successiveExclamationMarks: false,
   
