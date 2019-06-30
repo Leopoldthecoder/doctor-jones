@@ -1,6 +1,12 @@
 module.exports = {
   base: '/doctor-jones/',
   title: 'Doctor Jones',
+  head: [
+    [
+      'link',
+      { rel: 'shortcut icon', type: 'image/x-icon', href: './favicon.ico' }
+    ]
+  ],
   description: '中文排版格式化工具',
   themeConfig: {
     displayAllHeaders: true,

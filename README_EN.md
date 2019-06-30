@@ -8,6 +8,13 @@
   <a href='https://github.com/Leopoldthecoder/doctor-jones/blob/master/LICENSE'><img src='https://img.shields.io/npm/l/doctor-jones.svg?style=for-the-badge' alt='Liscense' /></a>
   <br>
   <br>
+  <br>
+  <br>
+  <img src="media/logo.png" height="200">
+  <br>
+  <br>
+  <br>
+  <br>
   <span>Links</span>
   <br>
   <a href='https://leopoldthecoder.github.io/doctor-jones/'>文档</a>

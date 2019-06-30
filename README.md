@@ -7,7 +7,13 @@
   <a href='https://www.npmjs.com/package/doctor-jones'><img src='https://img.shields.io/bundlephobia/min/doctor-jones.svg?style=for-the-badge' alt='npm bundle size' /></a>
   <a href='https://github.com/Leopoldthecoder/doctor-jones/blob/master/LICENSE'><img src='https://img.shields.io/npm/l/doctor-jones.svg?style=for-the-badge' alt='Liscense' /></a>
   <br>
-  <img src="media/logo.png">
+  <br>
+  <br>
+  <br>
+  <img src="media/logo.png" height="200">
+  <br>
+  <br>
+  <br>
   <br>
   <span>链接</span>
   <br>
