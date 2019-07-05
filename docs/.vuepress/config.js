@@ -15,6 +15,7 @@ module.exports = {
       { text: 'Doctor Jones', link: '/doctor-jones/intro/' },
       { text: 'CLI', link: '/cli/' },
       { text: 'Webpack Loader', link: '/doctor-jones-loader/' },
+      { text: 'Chrome 扩展', link: '/doctor-jones-extension/' },
       {
         text: 'GitHub',
         link:
@@ -28,7 +29,8 @@ module.exports = {
         ['usage', '使用']
       ],
       '/cli/': [['', 'CLI']],
-      '/doctor-jones-loader/': [['', 'webpack loader']]
+      '/doctor-jones-loader/': [['', 'webpack loader']],
+      '/doctor-jones-extension/': [['', 'Chrome 扩展']]
     }
   },
   plugins: [

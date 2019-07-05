@@ -28,6 +28,8 @@
   <br>
   <a href='https://github.com/Leopoldthecoder/doctor-jones-loader'>doctor-jones-loader</a>
   <span> · </span>
+  <a href='https://github.com/Leopoldthecoder/doctor-jones-extension'>doctor-jones-extension</a>
+  <span> · </span>
   <span>More to be developed...</span>
 </p>
 
@@ -39,7 +41,7 @@
 
 * [x] An [`npm` package](https://www.npmjs.com/package/doctor-jones) which takes a string and returns the formatted output
 * [x] A [`webpack` loader](https://github.com/Leopoldthecoder/doctor-jones-loader) which formats your strings in `.js`, `.ts`, `.jsx`, `.tsx`, `.vue` files
-* [ ] A Chrome extension which formats the web page you're browsing (under development)
+* [x] A [Chrome extension](https://github.com/Leopoldthecoder/doctor-jones-extension) which formats the web page you're browsing
 * [ ] A ready-to-use website where you can paste some text and get the formatted output, aka. `doctor-jones-as-a-service`, or `DJaaS` (in plan)
 
 Here "formatting" means:
