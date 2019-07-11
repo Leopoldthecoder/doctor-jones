@@ -25,12 +25,16 @@ export default createLexer([
     regexes: [/^(！{2,})/]
   },
   {
+    type: tokenTypes.INVALID_ELLIPSIS,
+    regexes: [/^([。，、]{2,}|[.]{4,})/]
+  },
+  {
     type: tokenTypes.DOTS_AS_ELLIPSIS,
     regexes: [/^([.]{3})/]
   },
   {
-    type: tokenTypes.INVALID_ELLIPSIS,
-    regexes: [/^([。，、]{2,}|[.]{2}|[.]{4,})/]
+    type: tokenTypes.TWO_DOTS,
+    regexes: [/^([.]{2})/]
   },
   {
     type: tokenTypes.FULLWIDTH_LEFT_SINGLE_QUOTE,
@@ -56,7 +60,7 @@ export default createLexer([
   },
   {
     type: tokenTypes.NUMBERS,
-    regexes: [/^([0-9.]+)/]
+    regexes: [/^([0-9]+(\.[0-9]+)?)/]
   },
   {
     type: tokenTypes.ALPHABETS_AND_NUMBERS,

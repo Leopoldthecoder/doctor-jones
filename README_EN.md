@@ -10,7 +10,7 @@
   <br>
   <br>
   <br>
-  <img src="media/logo.png" height="200">
+  <img src="https://raw.githubusercontent.com/Leopoldthecoder/doctor-jones/master/media/logo.png" height="200">
   <br>
   <br>
   <br>

@@ -88,9 +88,11 @@ const dj = (input, userOptions) => {
       if (
         (ellipsisTolerance === 'none' &&
           (token.type === tokenTypes.INVALID_ELLIPSIS ||
-            token.type === tokenTypes.DOTS_AS_ELLIPSIS)) ||
+            token.type === tokenTypes.DOTS_AS_ELLIPSIS ||
+            token.type === tokenTypes.TWO_DOTS)) ||
         (ellipsisTolerance === '3dots' &&
-          token.type === tokenTypes.INVALID_ELLIPSIS)
+          (token.type === tokenTypes.INVALID_ELLIPSIS ||
+            token.type === tokenTypes.TWO_DOTS))
       ) {
         op.push({
           type: operationTypes.REPLACE,
