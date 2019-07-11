@@ -1,3 +1,13 @@
+## [0.3.2](https://github.com/Leopoldthecoder/doctor-jones/compare/0.3.0...0.3.2) (2019-07-11)
+
+
+### Bug Fixes
+
+* ellipsis format for 4 or more dots ([1c47946](https://github.com/Leopoldthecoder/doctor-jones/commit/1c47946))
+* remove hyphen from full width rule ([c61d0dd](https://github.com/Leopoldthecoder/doctor-jones/commit/c61d0dd))
+
+
+
 ## [0.3.1](https://github.com/Leopoldthecoder/doctor-jones/compare/0.3.0...0.3.1) (2019-07-11)
 
 
