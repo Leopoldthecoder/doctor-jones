@@ -51,7 +51,7 @@ export default createLexer([
   {
     type: tokenTypes.FULLWIDTH_PUNCTUATION,
     regexes: [
-      /^([，。：；！？（）、〈〉《》“”‘’「」『』〔〕【】〖〗⦗⦘〘〙…●～—]+?)/
+      /^([，。：；！？（）、〈〉《》“”‘’「」『』〔〕【】〖〗⦗⦘〘〙…●～]+?)/
     ]
   },
   {
