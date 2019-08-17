@@ -1,3 +1,12 @@
+# [1.0.0](https://github.com/Leopoldthecoder/doctor-jones/compare/0.3.2...1.0.0) (2019-08-17)
+
+
+### Bug Fixes
+
+* remove ellipsis from full width rule ([f9db2f1](https://github.com/Leopoldthecoder/doctor-jones/commit/f9db2f1))
+
+
+
 ## [0.3.2](https://github.com/Leopoldthecoder/doctor-jones/compare/0.3.0...0.3.2) (2019-07-11)
 
 
