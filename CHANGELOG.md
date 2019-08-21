@@ -1,3 +1,7 @@
+## [1.0.2](https://github.com/Leopoldthecoder/doctor-jones/compare/1.0.1...1.0.2) (2019-08-21)
+
+
+
 ## [1.0.1](https://github.com/Leopoldthecoder/doctor-jones/compare/0.3.2...1.0.1) (2019-08-21)
 
 

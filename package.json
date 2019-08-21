@@ -1,6 +1,6 @@
 {
   "name": "doctor-jones",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "After all, we should all respect w3c/clreq",
   "main": "dist/index.cjs.js",
   "typings": "index.d.ts",
