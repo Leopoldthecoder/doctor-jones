@@ -26,7 +26,11 @@ export default createLexer([
   },
   {
     type: tokenTypes.INVALID_ELLIPSIS,
-    regexes: [/^([。，、]{2,}|[.]{4,})/]
+    regexes: [/^([。，、]{2,}|[.]{4,}|[…]{3,})/]
+  },
+  {
+    type: tokenTypes.ELLIPSIS,
+    regexes: [/^(…{1,2})/]
   },
   {
     type: tokenTypes.DOTS_AS_ELLIPSIS,
