@@ -1,3 +1,13 @@
+## [1.0.1](https://github.com/Leopoldthecoder/doctor-jones/compare/0.3.2...1.0.1) (2019-08-21)
+
+
+### Bug Fixes
+
+* declare ellipsis as token ([f90975f](https://github.com/Leopoldthecoder/doctor-jones/commit/f90975f))
+* remove ellipsis from full width rule ([80d9d5f](https://github.com/Leopoldthecoder/doctor-jones/commit/80d9d5f))
+
+
+
 # [1.0.0](https://github.com/Leopoldthecoder/doctor-jones/compare/0.3.2...1.0.0) (2019-08-17)
 
 
