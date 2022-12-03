@@ -32,13 +32,13 @@
   },
   "homepage": "https://github.com/Leopoldthecoder/doctor-jones#readme",
   "dependencies": {
-    "update-notifier": "^3.0.0",
+    "update-notifier": "^6.0.2",
     "yargonaut": "^1.1.4",
     "yargs": "^13.2.4"
   },
   "devDependencies": {
     "@vuepress/plugin-google-analytics": "^1.0.1",
-    "ava": "^1.0.1",
+    "ava": "^5.1.0",
     "chinese-random-name": "^1.0.0",
     "conventional-changelog-cli": "^2.0.11",
     "coveralls": "^3.0.4",
